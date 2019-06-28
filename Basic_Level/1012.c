@@ -8,54 +8,54 @@ int main(int argc, char const *argv[]) {
 		scanf("%d", &temp);
 		// calculate A1
 		if(temp % 5 == 0 && temp % 2 == 0) {
-			Array[0] += temp;
+			Array[1] += temp;
 		}
 		// calculate A2, attention: A2 may is 0
 		if(temp % 5 == 1) {
 			flag = 1;
-			Array[1] += (temp * sign);
+			Array[2] += (temp * sign);
 			sign = - sign;
 		}
 		// calculate A3
 		if(temp % 5 == 2) {
-			Array[2]++;
+			Array[3]++;
 		}
 		// calculate A4
 		if(temp % 5 == 3) {
-			Array[3]++;
+			Array[4]++;
 			sum_A4 += temp;
 		}
 		// calculate A5
 		if(temp % 5 == 4) {
-			if(temp > Array[4]) {
-				Array[4] = temp;
+			if(temp > Array[5]) {
+				Array[5] = temp;
 			}
 		}
 	}
-	average_A4 = 1.0 * sum_A4 / Array[3];
+	average_A4 = 1.0 * sum_A4 / Array[4];
 	//print
-	if(Array[0]) {
-		printf("%d ", Array[0]);
-	} else {
-		printf("N ");
-	}
-	if(flag) {
+	if(Array[1]) {
 		printf("%d ", Array[1]);
 	} else {
 		printf("N ");
 	}
-	if(Array[2]) {
+	if(flag) {
 		printf("%d ", Array[2]);
 	} else {
 		printf("N ");
 	}
 	if(Array[3]) {
-		printf("%.1lf ", average_A4);
+		printf("%d ", Array[3]);
 	} else {
 		printf("N ");
 	}
 	if(Array[4]) {
-		printf("%d\n", Array[4]);
+		printf("%.1lf ", average_A4);
+	} else {
+		printf("N ");
+	}
+	if(Array[5]) {
+		printf("%d\n", Array[5]);
 	} else {
 		printf("N\n");
 	}
