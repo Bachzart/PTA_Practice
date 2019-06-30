@@ -5,7 +5,7 @@ int main(int argc, char const *argv[])
 {
 	int c1, c2, seconds, minutes, hours;
 	scanf("%d %d", &c1, &c2);
-	seconds = (c2 - c1 + 50) / CLK_TCK;
+	seconds = (c2 - c1 + 50) / CLK_TCK;	//c2 - c1 + 50 -> round
 	/*
 	hours = seconds / 3600;
 	seconds -= hours*3600;

@@ -1,5 +1,4 @@
 #include <stdio.h>
-#define MAXN 100
 
 int main(int argc, char const *argv[]) {
 	int i, N, A_Count, A_Voice, A_Write, B_Count, B_Voice, B_Write, Sum_Voice;
