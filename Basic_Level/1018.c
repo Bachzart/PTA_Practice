@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /*
 In the count array:
 0 -> victory
@@ -53,8 +52,7 @@ int main(int argc, char const *argv[]) {
 	}
 	printf("%d %d %d\n", A_Count[0], A_Count[1], A_Count[2]);	//For A
 	printf("%d %d %d\n", A_Count[2], A_Count[1], A_Count[0]);	//For B
-	printf("%c", Gesture[MaxOfArray(A_Gesture)]);
-	printf(" %c\n", Gesture[MaxOfArray(B_Gesture)]);
+	printf("%c %c\n", Gesture[MaxOfArray(A_Gesture)], Gesture[MaxOfArray(B_Gesture)]);
 	return 0;
 }
 
