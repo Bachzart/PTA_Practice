@@ -9,7 +9,7 @@ int main(int argc, char const *argv[]) {
 	scanf("%s %c %s %c", A_num, &DA, B_num, &DB);
 	PA = Get_P_value(A_num, DA);
 	PB = Get_P_value(B_num, DB);
-	printf("%d\n", PA+PB);
+	printf("%d\n", PA + PB);
 	return 0;
 }
 
@@ -24,14 +24,11 @@ int Get_P_value(char *num, char D) {
 	p = num;
 	/*use char pointer to count the number of occurrences of D in number string*/
 	while(*p) {
-		if(*p == D) times++;
-		p++;
-	}
-	if(times) {
-		for(i=1; i<=times; i++) {
+		if(*p == D) {
 			P += temp;
 			temp *= 10;
 		}
+		p++;
 	}	
 	return P;
 }
