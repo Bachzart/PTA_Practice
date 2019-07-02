@@ -1,13 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 
-typedef struct PolyNode *Polynomial;	//the way to represent the polynomial
+typedef struct PolyNode *Polynomial;
 struct PolyNode {
-	double coef;	//coefficient
-	int expon;	//exponent
-	Polynomial link;	//link next node
+	double coef;
+	int expon;
+	Polynomial link;
 };
-
 
 void Attach(double c, int e, Polynomial *pRear);
 Polynomial ReadPoly();
@@ -69,18 +68,12 @@ Polynomial Mult(Polynomial P1, Polynomial P2) {
 	P = (Polynomial)malloc(sizeof(struct PolyNode));
 	P->link = NULL;
 	Rear = P;
-	while(t2) {
-		//use the first node of P1 to multiple the P2's every nodes
-		Attach(t1->coef * t2->coef, t1->expon + t2->expon, &Rear);
-		t2 = t2->link;
-	}
-	t1 = t1->link;	//now pass the first node
 	while(t1) {
 		t2 = P2;
 		Rear = P;
 		while(t2) {
-			e = t1->expon + t2->expon;	//calculate the sum of exponent
-			c = t1->coef * t2->coef;	//calculate the  multi of coefficient
+			e = t1->expon + t2->expon;
+			c = t1->coef * t2->coef;
 			while(Rear->link && Rear->link->expon > e) {
 				Rear = Rear->link;
 			}
@@ -110,25 +103,21 @@ Polynomial Mult(Polynomial P1, Polynomial P2) {
 	return P;
 }
 
-void PrintPoly(Polynomial P)
-{
+void PrintPoly(Polynomial P) {
 	int flag = 0;
-	if(!P){
-		printf("0 0\n");
-		return;
-	}
-	while(P)
-	{
-		if(!flag) flag = 1;
-		else printf(" ");
+	while(P) {
+		if(!flag){
+			flag = 1;		
+		} else {
+			printf(" ");
+		}
 		printf("%d %.1lf", P->expon, P->coef);
 		P = P->link;
 	}
 	printf("\n");
 }
 
-int Compare(int a, int b)
-{
+int Compare(int a, int b) {
 	return a > b ? 1 : a == b ? 0 : -1;
 }
 
