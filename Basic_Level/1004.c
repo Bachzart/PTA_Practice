@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-typedef struct Stu
-{
+typedef struct Stu {
 	char name[12];
 	char number[12];
 	int grade;
