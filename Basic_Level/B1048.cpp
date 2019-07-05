@@ -15,6 +15,7 @@ int main(int argc, char const *argv[]) {
 	for(i = 0; i < len; i++) {
 		int numA = i < lenA ? A[i] - '0' : 0;
 		int numB = i < lenB ? B[i] - '0' : 0;
+		printf("numA = %d, numB = %d\n", numA, numB);
 		if(i % 2 == 0) {
 			int sum = numA + numB;
 			Result[i] = change[sum % 13];
