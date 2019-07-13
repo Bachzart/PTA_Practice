@@ -1,29 +1,26 @@
-#include <stdio.h>
+#include <cstdio>
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
 	char c;
 	int num, sum=0;
-	while((c=getchar()) != '\n')
-	{
-		if('0' <= c && c <= '9'){
+	while((c=getchar()) != '\n') {
+		if('0' <= c && c <= '9') {
 			num = c - '0';
 			sum+=num;
-		}else continue;
+		} else continue;
 	}
 	/* method 1: 
 	int digit, temp=sum, mask=1;
-	while(temp > 9)
-	{
+	while(temp > 9) {
 		temp/=10;
 		mask*=10;
 	}
 	temp=sum;
-	do{
-		digit=temp/mask;
-		temp%=mask;
-		mask/=10;
-		switch(digit){
+	do {
+		digit = temp / mask;
+		temp %= mask;
+		mask /= 10;
+		switch(digit) {
 			case 0:printf("ling");break;
 			case 1:printf("yi");break;
 			case 2:printf("er");break;
@@ -37,19 +34,19 @@ int main(int argc, char const *argv[])
 		}
 		if(mask == 0) printf("\n");
 		else printf(" ");
-	}while(mask > 0);
+	} while(mask > 0);
 	*/ 
 	/*method 2:*/
 	char num2chinese[][6] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
 	int unit, tens, hundred;
-	unit = sum%10;
-	tens = sum/10%10;
-	hundred=sum/100;
-	if(sum > 100){
+	unit = sum % 10;
+	tens = sum / 10 % 10;
+	hundred = sum / 100;
+	if(sum > 100) {
 		printf("%s %s %s\n", num2chinese[hundred], num2chinese[tens], num2chinese[unit]);
-	}else if(10 < sum && sum < 100){
+	} else if (10 < sum && sum < 100){
 		printf("%s %s\n", num2chinese[tens], num2chinese[unit]);
-	}else{
+	} else {
 		printf("%s\n", num2chinese[unit]);
 	}
 	return 0;
