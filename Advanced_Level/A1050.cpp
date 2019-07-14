@@ -6,17 +6,13 @@ int main(int argc, char const *argv[]) {
 	fgets(str1, MAXN, stdin);
 	fgets(str2, MAXN, stdin);
 	int times[128] = {0};
-	char *p = str1;
+	char *p = str2;
 	while(*p != '\0') {
-		times[*p++]++;
-	}
-	p = str2;
-	while(*p != '\0') {
-		times[*p++] = 0;
+		times[*p++] = 1;
 	}
 	p = str1;
 	while(*p != '\0') {
-		if(times[*p]) {
+		if(!times[*p]) {
 			putchar(*p);
 		}
 		p++;
