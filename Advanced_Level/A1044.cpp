@@ -12,15 +12,19 @@ int main(int argc, char const *argv[]) {
 		scanf("%d", &sum[i]);
 		sum[i] += sum[i - 1];
 	}
+	//find the approperiate 'nearS'
 	for(int i = 1; i <= n; i++) {
 		int j = UpperBound(i, n + 1, sum[i - 1] + S);
 		if(sum[j - 1] - sum[i - 1] == S) {
 			nearS = S;
 			break;
 		} else if(j <= n && sum[j] - sum[i - 1] < nearS) {
+			//find the minimum
 			nearS = sum[j] - sum[i - 1];
+			printf("nearS = %d\n", nearS);
 		}
 	}
+	//print
 	for(int i = 1; i <= n; i++) {
 		int j = UpperBound(i, n + 1, sum[i - 1] + nearS);
 		if(sum[j - 1] - sum[i - 1] == nearS) {
