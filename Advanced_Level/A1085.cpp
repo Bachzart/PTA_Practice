@@ -1,3 +1,31 @@
+/* method 1: use two pointers
+*/
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+const int MAXN = 100000 + 10;
+long long n, p, Num[MAXN];
+
+int main(int argc, char const *argv[]) {
+	scanf("%lld %lld", &n, &p);
+	for(int i = 0; i < n; i++) {
+		scanf("%lld", &Num[i]);
+	}
+	sort(Num, Num + n);
+	int i, j = 0, ans = 0;
+	while(i < n && j < n) {
+		long long temp = Num[i] * p;
+		while(j < n && Num[j] <= temp) {
+			ans = max(ans, j - i + 1);
+			j++;
+		}
+		i++;
+	}
+	printf("%d", ans);
+}
+
+/* method 2: use dichotomy
+
 #include <cstdio>
 #include <algorithm>
 using namespace std;
@@ -35,3 +63,4 @@ int BinarySearch(int i, long long x) {
 	}
 	return left;
 }
+*/
