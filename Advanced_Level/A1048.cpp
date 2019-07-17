@@ -1,5 +1,39 @@
-/* method 1: use dichotomy
+/* method 1: use two pointers
 */
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+const int MAXN = 100000 + 10;
+int coins[MAXN];
+
+int main(int argc, char const *argv[]) {
+	int N, M;
+	scanf("%d %d", &N, &M);
+	for(int i = 0; i < N; i++) {
+		scanf("%d", &coins[i]);
+	}
+	sort(coins, coins + N);
+	int i = 0, j = N - 1;
+	while(i < j) {
+		int temp = coins[i] + coins[j];
+		if(temp == M) {
+			break;
+		} else if(temp < M) {
+			i++;
+		} else {
+			j--;
+		}
+	}
+	if(i >= j) {
+		printf("No Solution\n");
+	} else {
+		printf("%d %d\n", coins[i], coins[j]);
+	}
+	return 0;
+}
+
+/* method 2: use dichotomy
+
 #include <cstdio>
 #include <algorithm>
 using namespace std;
@@ -44,7 +78,7 @@ int BinarySearch(int *array, int left, int right, int x) {
 	return -1;
 }
 
-/* method 2: use hash
+/* method 3: use hash
 
 #include <cstdio>
 #include <algorithm>
