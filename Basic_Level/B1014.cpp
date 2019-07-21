@@ -1,15 +1,9 @@
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
+#include <cstdio>
+#include <cstring>
+#include <cctype>
 
-char *Week[7] = {
-	"MON",
-	"TUE",
-	"WED",
-	"THU",
-	"FRI",
-	"SAT",
-	"SUN",
+char Week[7][5] = {
+	"MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN",
 };
 
 int Hours[31] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9,

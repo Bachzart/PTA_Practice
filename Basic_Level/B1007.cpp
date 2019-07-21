@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 typedef enum{ false, true} bool;
 
 bool IsPrime(int n);

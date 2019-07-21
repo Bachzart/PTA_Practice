@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 #define MAX 15000
 
 bool IsPrime(int number);
