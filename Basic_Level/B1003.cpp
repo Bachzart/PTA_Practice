@@ -1,54 +1,34 @@
 #include <cstdio>
 #include <cstring>
-int select_str(char s[], int length); 
 
 int main(int argc, char const *argv[]) {
 	int n;
 	scanf("%d", &n);
-	char str[105];
 	while(n--) {
+		char str[105];
 		scanf("%s", str);
-		int left, mid, right;
-		left = mid = right = 0;
-		int i, cnt, len = strlen(str);
-		//calculate the number of 'A' in different area.
-		for(i=0; i<len; i++) {
-			if(str[i] != 'P') left++;
-			else break;
+		int len = strlen(str);
+		int num_p = 0, num_t = 0, other = 0;
+		int pos_p = -1, pos_t = -1;
+		for(int i = 0; i < len; i++) {
+			if(str[i] == 'P') {
+				num_p++;
+				pos_p = i;
+			} else if(str[i] == 'T') {
+				num_t++;
+				pos_t = i;
+			} else if(str[i] != 'A') other++;
 		}
-		for(i=0, cnt=0; i<len; i++) {
-			if(str[i] != 'T') cnt++;
-			else {
-				mid = cnt - left - 1;	//subtract the number of 'P' 
-				right = len - cnt - 1;	//subtract the number of 'T'
-				break;
-			}
+		if(num_p != 1 || num_t != 1 || other != 0 || pos_t - pos_p <= 1) {
+			printf("NO\n");
+			continue;
 		}
-//		printf("left=%d, mid=%d, right=%d\n", left, mid, right);	//output the number of 'A' in different area.
-		if(select_str(str, len)) {
-			if(!mid) printf("NO\n");
-			else {
-				if(left * mid == right) {
-					printf("YES\n");
-				} else {
-					printf("NO\n");
-				}
-			}
+		int x = pos_p, y = pos_t - pos_p - 1, z = len - pos_t - 1;
+		if(z - x * (y - 1) == x) {
+			printf("YES\n");
 		} else {
 			printf("NO\n");
 		}
 	}
 	return 0;
-}
-
-int select_str(char s[], int length) {
-	//when the string has other chars dislike 'P' or 'A' or 'T', the string is wrong. 
-	int i, flag=1;
-	for(i=0; i<length; i++) {
-		if(s[i] != 'P' && s[i] != 'A' && s[i] != 'T'){
-			flag=0;
-			break;
-		}
-	}
-	return flag;
 }
