@@ -85,3 +85,38 @@ void reverse(int *array, int start, int end) {
 }
 
 */
+
+/* method 4: use GCD to move elements
+
+#include <cstdio>
+int gcd(int a, int b) {
+	return b == 0 ? a : gcd(b, a % b);
+}
+int main(int argc, char const *argv[]) {
+	int array[110], n, m, temp, pos, next;
+	scanf("%d %d", &n, &m);
+	for(int i = 0; i < n; i++) {
+		scanf("%d", &array[i]);
+	}
+	m = m % n;
+	if(m != 0) {
+		int d = gcd(n, m);
+		for(int i = n - m; i < n - m + d; i++) {
+			temp = array[i];
+			pos = i;
+			do {
+				next = (pos - m + n) % n;
+				if(next != i) array[pos] = array[next];
+				else array[pos] = temp;
+				pos = next;
+			} while(pos != i);
+		}
+	}
+	for(int i = 0; i < n; i++) {
+		printf("%d", array[i]);
+		if(i < n - 1) putchar(' ');
+	}
+	return 0;
+}
+
+*/
