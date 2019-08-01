@@ -50,6 +50,5 @@ int main(int argc, char const *argv[]) {
 			printf(" + %d^%d", ans[i], p);
 		}
 	}
-	
 	return 0;
 } 
