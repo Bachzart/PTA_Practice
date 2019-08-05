@@ -7,9 +7,9 @@ struct node {
 int n, m, slice, T;
 int pixel[1290][130][61];
 bool inqueue[1290][130][61];
-int X[6] = {0, 0, 0, 0, 1, -1};
+int X[6] = {1, -1, 0, 0, 0, 0};
 int Y[6] = {0, 0, 1, -1, 0, 0};
-int Z[6] = {1, -1, 0, 0, 0, 0};
+int Z[6] = {0, 0, 0, 0, 1, -1};
 
 bool judge(int x, int y, int z) {
 	if(x >= n || x < 0 || y >= m || y < 0 || z >= slice || z < 0) return false;
