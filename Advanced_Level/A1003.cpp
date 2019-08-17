@@ -5,13 +5,10 @@ using namespace std;
 const int maxv = 510;
 const int INF = 1000000000;
 int n, m, st, ed, G[maxv][maxv], weight[maxv];
-int d[maxv], w[maxv], num[maxv];
+int d[maxv], w[maxv] = {0}, num[maxv] = {0};
 bool vis[maxv] = {false};
-
 void dijkstra(int s) {
 	fill(d, d + maxv, INF);
-	memset(num, 0, sizeof(num));
-	memset(w, 0, sizeof(w));
 	d[s] = 0;
 	w[s] = weight[s];
 	num[s] = 1;
@@ -28,13 +25,16 @@ void dijkstra(int s) {
 		for(int v = 0; v < n; v++) {
 			if(vis[v] == false && G[u][v] != INF) {
 				if(d[u] + G[u][v] < d[v]) {
-					d[v] = d[u] + G[u][v];
-					w[v] = w[u] + weight[v];
-					num[v] = num[u];
+					d[v] = d[u] + G[u][v];	//update the distance of each node
+					w[v] = w[u] + weight[v]; // update the 'hands'
+					num[v] = num[u];	// update the path for a new reachable node
 				} else if(d[u] + G[u][v] == d[v]) {
+					/*only one path can count the 'hands', so the w[v] will
+					be covered by the sum of last node and its own 'hands' */
 					if(w[u] + weight[v] > w[v]) {
 						w[v] = w[u] + weight[v];
 					}
+					//but the number of path is not only
 					num[v] += num[u];
 				}
 			}
