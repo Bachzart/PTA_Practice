@@ -1,41 +1,43 @@
-/* method 1: use bellman-ford
+/*method 1: use bellman-ford
 */
 #include <iostream>
 #include <cstring>
 #include <vector>
-#include <set> 
+#include <set>
 using namespace std;
+struct node {
+	int v, dis;
+	node(int _v, int _dis) : v(_v), dis(_dis) {}	// constructor
+};
 const int maxv = 510;
 const int inf = 0x3fffffff;
-struct node {
-	int v, dis; 
-	node(int _v, int _dis) : v(_v), dis(_dis) {}
-};
-vector<node> Adj[maxv];
 int n, m, st, ed, weight[maxv];
-int d[maxv], w[maxv] = {0}, num[maxv] = {0};
+int num[maxv] = {0}, w[maxv] = {0}, d[maxv];
+vector<node> Adj[maxv];
 set<int> pre[maxv];
 bool bellmanford(int s) {
 	fill(d, d + maxv, inf);
 	d[s] = 0;
-	w[s] = weight[s];
 	num[s] = 1;
+	w[s] = weight[s];
 	for(int i = 0; i < n - 1; i++) {
 		for(int u = 0; u < n; u++) {
 			for(int j = 0; j < Adj[u].size(); j++) {
 				int v = Adj[u][j].v;
 				int dis = Adj[u][j].dis;
-				if(d[u] + dis < d[v]) {
+				if(d[u] + dis < d[v]) {	// more optimal solution
 					d[v] = d[u] + dis;
 					w[v] = w[u] + weight[v];
 					num[v] = num[u];
-					pre[v].clear();
-					pre[v].insert(u);
+					pre[v].clear();	// attention: pre[v] must be cleared firstly
+					pre[v].insert(u);	// save the precursor
 				} else if(d[u] + dis == d[v]) {
-					if(w[u] + weight[v] > w[v]) {
+					if(w[v] < w[u] + weight[v]) {	// update the maximum
 						w[v] = w[u] + weight[v];
 					}
-					pre[v].insert(u);
+					pre[v].insert(u);	// other shortest path also need save
+					/* the number of shortest path has been changed, so 
+					num[v] must be cleared firstly */
 					num[v] = 0;
 					set<int>::iterator it;
 					for(it = pre[v].begin(); it != pre[v].end(); it++) {
