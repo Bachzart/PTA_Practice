@@ -7,7 +7,7 @@ using namespace std;
 const int maxv = 510;
 const int inf = 0x3fffffff;
 int n, m, s, t, G[maxv][maxv], cost[maxv][maxv];
-int d[maxv], mincost = inf;
+int d[maxv], mincost = inf; // mincost need to be initialized to 'inf' 
 bool vis[maxv] = {false};
 vector<int> pre[maxv], tempath, path;
 void dijkstra(int s) {
@@ -27,10 +27,10 @@ void dijkstra(int s) {
 			if(vis[v] == false && G[u][v] != inf) {
 				if(d[u] + G[u][v] < d[v]) {
 					d[v] = d[u] + G[u][v];
-					pre[v].clear();
+					pre[v].clear(); // do not forget clear
 					pre[v].push_back(u);
 				} else if(d[u] + G[u][v] == d[v]) {
-					pre[v].push_back(u);
+					pre[v].push_back(u);	// save other shortest path
 				}
 			}
 		}
@@ -131,8 +131,7 @@ int main(int argc, char const *argv[]) {
 	for(int i = 0; i < m; i++) {
 		cin >> u >> v;
 		cin >> G[u][v] >> cost[u][v];
-		G[v][u] = G[u][v];
-		cost[v][u] = cost[u][v];
+		G[v][u] = G[u][v], cost[v][u] = cost[u][v];
 	}
 	dijkstra(s);
 	dfs(t);

@@ -102,7 +102,7 @@ void dijkstra(int s) {
 					if(w[u] + weight[v] > w[v]) {
 						w[v] = w[u] + weight[v];
 					}
-					//but the number of path is not only
+					//but the number of shortest path is not only
 					num[v] += num[u];
 				}
 			}
