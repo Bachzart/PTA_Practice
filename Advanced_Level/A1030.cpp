@@ -85,8 +85,7 @@ int n, m, s, t, G[maxv][maxv], cost[maxv][maxv];
 int d[maxv], c[maxv], pre[maxv];
 bool vis[maxv] = {false};
 void dijkstra(int s) {
-	fill(d, d + maxv, inf);
-	fill(c, c + maxv, inf);
+	fill(d, d + maxv, inf);	// do not forget initlize the distance array
 	for(int i = 0; i < n; i++) pre[i] = i;
 	d[s] = 0;
 	c[s] = 0;
