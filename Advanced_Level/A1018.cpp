@@ -5,7 +5,7 @@
 using namespace std;
 const int maxv = 510;
 const int inf = 0x3fffffff;
-int Cmax, n, m, dst, numpath, G[maxv][maxv], weight[maxv];
+int Cmax, n, m, sp, G[maxv][maxv], weight[maxv];
 int d[maxv], minneed = inf, minremain = inf;
 bool vis[maxv] = {false};
 vector<int> pre[maxv], tempath, path; 
@@ -44,10 +44,10 @@ void dfs(int v) {
 			if(weight[id] > 0) {
 				remain += weight[id];
 			} else {
-				if(remain > abs(weight[id])) {
-					remain -= abs(weight[id]);
+				if(remain + weight[id] > 0) {
+					remain += weight[id];
 				} else {
-					need += abs(weight[id]) - remain;
+					need += abs(remain + weight[id]);
 					remain = 0;
 				}
 			}
@@ -70,11 +70,11 @@ void dfs(int v) {
 	tempath.pop_back();
 }
 int main(int argc, char const *argv[]) {
-	cin >> Cmax >> n >> dst >> m;
+	cin >> Cmax >> n >> sp >> m;
 	fill(G[0], G[0] + maxv * maxv, inf);
 	for(int i = 1; i <= n; i++) {
 		cin >> weight[i];
-		weight[i] -= Cmax / 2;
+		weight[i] -= Cmax / 2;	//preprocessing: make it 'perfect'
 	}
 	int u, v, dis;
 	for(int i = 0; i < m; i++) {
@@ -82,7 +82,7 @@ int main(int argc, char const *argv[]) {
 		G[u][v] = G[v][u] = dis;
 	}
 	dijkstra(0);
-	dfs(dst);
+	dfs(sp);
 	cout << minneed << ' ';
 	for(int i = path.size() - 1; i >=0; i--) {
 		cout << path[i];
