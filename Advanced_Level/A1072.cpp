@@ -8,7 +8,7 @@ int n, m, k, ds, G[maxv][maxv];
 int d[maxv];
 bool vis[maxv] = {false};
 void dijkstra(int s) {
-	memset(vis, false, sizeof(vis));
+	memset(vis, false, sizeof(vis)); //do not forget initializing this array
 	fill(d, d + maxv, inf);
 	d[s] = 0;
 	for(int i = 0; i < n + m; i++) {
@@ -30,7 +30,7 @@ void dijkstra(int s) {
 		}
 	}
 }
-int getid(char str[]) {
+int getid(char str[]) { //tranfer the id of gas station
 	int i = 0, len = strlen(str), id = 0;
 	while(i < len) {
 		if(str[i] != 'G') {
@@ -56,21 +56,21 @@ int main(int argc, char const *argv[]) {
 	int ansid = -1;
 	for(int i = n + 1; i <= n + m; i++) {
 		double mindis = inf, avg = 0;
-		dijkstra(i);
+		dijkstra(i); //every station should execute this dijkstra
 		for(int j = 1; j <=n; j++) {
-			if(d[j] > ds) {
+			if(d[j] > ds) {	//this solution does not fit the problem
 				mindis = -1;
 				break;
-			}d
-			if(d[j] < mindis) mindis = d[j];
-			avg += 1.0 * d[j] / n;
+			}
+			if(d[j] < mindis) mindis = d[j]; //cal minimum of distance
+			avg += 1.0 * d[j] / n; //calculate the average
 		}
 		if(mindis == -1) continue;
-		if(mindis > ansdis) {
+		if(mindis > ansdis) { //more optimal solution
 			ansid = i;
 			ansdis = mindis;
 			ansavg = avg;
-		} else if(mindis == ansdis && avg < ansavg) {
+		} else if(mindis == ansdis && avg < ansavg) { //more optimal solution
 			ansid = i;
 			ansavg = avg;
 		}
