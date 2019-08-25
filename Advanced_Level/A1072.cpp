@@ -23,20 +23,15 @@ void dijkstra(int s) {
 		vis[u] = true;
 		for(int v = 1; v <= n + m; v++) {
 			if(vis[v] == false && G[u][v] != inf) {
-				if(d[v] > d[u] + G[u][v]) {
-					d[v] = d[u] + G[u][v];
-				}
+				if(d[v] > d[u] + G[u][v]) d[v] = d[u] + G[u][v];
 			}
 		}
 	}
 }
 int getid(char str[]) { //tranfer the id of gas station
-	int i = 0, len = strlen(str), id = 0;
-	while(i < len) {
-		if(str[i] != 'G') {
-			id = id * 10 + (str[i] - '0');
-		}
-		i++;
+	int len = strlen(str), id = 0;
+	for(int i = 0; i < len; i++) {
+		if(str[i] != 'G') id = id * 10 + (str[i] - '0');
 	}
 	if(str[0] == 'G') return n + id;
 	else return id;
