@@ -1,16 +1,35 @@
-#include <cstdio>
+/* method 1: use long long int*/
+#include <iostream>
+using namespace std;
 
-int main(int argc, char const *argv[]) {
-	int T, i=1;
-	scanf("%d", &T);
-	long long a, b, c;
-	while(T--) {
-		scanf("%lld %lld %lld", &a, &b, &c);
-		if(a + b > c) {
-			printf("Case #%d: true\n", i++);
-		} else {
-			printf("Case #%d: false\n", i++);
-		}
-	}
-	return 0;
+int main() {
+    long long t, a, b, c;
+    cin >> t;
+    for(int i = 1; i <= t; i++) {
+        cin >> a >> b >> c;
+        cout << "Case #" << i << ": ";
+        if(a + b > c) cout << "true" << endl;
+        else cout << "false" << endl;
+    }
+    return 0;
 }
+
+/* method 2: use int
+#include <iostream>
+using namespace std;
+
+int main() {
+    int t, a, b, c;
+    cin >> t;
+    for(int i = 1; i <= t; i++) {
+        cin >> a >> b >> c;
+        cout << "Case #" << i << ": ";
+        if(a + b < 0 && a > 0 && b > 0) cout << "true"; //positive overflow
+        else if(a + b > 0 && a < 0 && b < 0) cout << "false";   //negative overflow
+        else if(a + b > c) cout << "true";	//normal 
+        else cout << "false";
+        cout << endl;
+    }
+    return 0;
+}
+*/
