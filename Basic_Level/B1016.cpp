@@ -1,34 +1,37 @@
-#include <stdio.h>
-#define MaxSize 15
-
-int Get_P_value(char *num, char D);
-
-int main(int argc, char const *argv[]) {
-	char A_num[MaxSize], B_num[MaxSize], DA, DB;
-	int PA, PB;
-	scanf("%s %c %s %c", A_num, &DA, B_num, &DB);
-	PA = Get_P_value(A_num, DA);
-	PB = Get_P_value(B_num, DB);
-	printf("%d\n", PA + PB);
-	return 0;
+/* method 1: use string
+#include <iostream>
+using namespace std;
+int getnum(char *str, char D) {
+    int ret = 0;
+    char *p = str;
+    for(; *p != '\0'; p++) {    //loop condition also can use str[i] != '\0'
+        if(*p == D) {
+            ret = ret * 10 + (*p - '0');
+        }
+    }
+    return ret;
 }
-
-int Get_P_value(char *num, char D) {
-	/*calculate the P value need 2 conditions:
-	1. the value of D
-	2. the occurrences of D in number string
-	P=0 -> D don't appear in num
-	*/
-	int i, times = 0, P = 0, temp = D - '0';
-	char *p;
-	p = num;
-	/*use char pointer to count the number of occurrences of D in number string*/
-	while(*p) {
-		if(*p == D) {
-			P += temp;
-			temp *= 10;
-		}
-		p++;
-	}	
-	return P;
+int main() {
+    char A[12], B[12], a, b;
+    scanf("%s %c %s %c", A, &a, B, &b);
+    printf("%d", getnum(A, a) + getnum(B, b));
+    return 0;
+}
+*/
+/* method 2: use int*/
+#include <iostream>
+using namespace std;
+int getnum(int A, int a) {
+    int ret = 0;
+    do{
+        if(A % 10 == a) ret = ret * 10 + a;
+        A /= 10;
+    } while(A > 0);
+    return ret;
+}
+int main() {
+    int A, B, a, b;
+    scanf("%d %d %d %d", &A, &a, &B, &b);
+    printf("%d", getnum(A, a) + getnum(B, b));
+    return 0;
 }
