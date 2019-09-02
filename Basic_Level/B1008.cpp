@@ -1,87 +1,82 @@
 /*
 method 1: use math, print it straightly according to the conditions.
 */
-#include <stdio.h>
-#define MAXN 105
-
-int main(int argc, char const *argv[]) {
-	int i, j, k, N, M, Array[MAXN];
-	scanf("%d %d", &N, &M);
-	for(i = 0; i < N; i++) {
-		scanf("%d", &Array[i]);
-	}
-	j = N - M % N;
-	k = j;
-	for(; j < N; j++) {
-		printf("%d ", Array[j]);
-	}
-	for(i = 0; i < k - 1; i++) {
-		printf("%d ", Array[i]);
-	}
-	printf("%d\n", Array[i]);
-	return 0;
+#include <iostream>
+using namespace std;
+const int maxn = 110;
+int main() {
+    int n, m, a[maxn];
+    cin >> n >> m;
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    m %= n;
+    for(int i = n - m; i < n; i++) {
+        cout << a[i] << ' ';
+    }
+    for(int i = 0; i < n - m; i++) {
+        cout << a[i];
+        if(i != n - m - 1) cout << ' ';
+    }
+    return 0;
 }
 
 /*
 method 2: use queue
+#include <iostream>
+#include <queue>
+using namespace std;
 
-#include <stdio.h>
-#define MAXN 105
-
-int main(int argc, char const *argv[]) {
-	int i, N, M, temp, Queue[MAXN], front, rear;
-	scanf("%d %d", &N, &M);
-	front = rear = -1;
-	i = N;
-	while(i--) {
-		scanf("%d", &temp);
-		Queue[++rear] = temp;	//Enqueue
-	}
-	i = N - M % N;
-	while(i--) {
-		Queue[++rear] = Queue[++front];	//First Dequeue, then Enqueue
-	}
-	while(front < rear - 1) {
-		printf("%d ", Queue[++front]);
-	}
-	printf("%d\n", Queue[++front]);
-	return 0;
+int main() {
+    queue<int> q;
+    int n, m, temp;
+    cin >> n >> m;
+    m %= n;
+    for(int i = 0; i < n; i++) {
+        cin >> temp;
+        q.push(temp);
+    }
+    for(int i = 0; i < n - m; i++) {
+        temp = q.front();
+        q.pop();
+        q.push(temp);
+    }
+    while(!q.empty()) {
+        cout << q.front();
+        q.pop();
+        if(q.size() != 0) cout << ' ';
+    }
+    return 0;
 }
 */
 
 /*
 method 3: use shift algorithm
-
-#include <stdio.h>
-#define MAXN 105
-
-void reverse(int *array, int start, int end);
-
-int main(int argc, char const *argv[]) {
-	int N, M, i, Array[MAXN];
-	scanf("%d %d", &N, &M);
-	for(i = 0; i < N; i++) {
-		scanf("%d", &Array[i]);
-	}
-	M %= N;
-	reverse(Array, 0, N - M - 1);
-	reverse(Array, N - M, N - 1);
-	reverse(Array, 0, N - 1);
-	printf("%d", Array[0]);
-	for(i = 1; i < N; i++) {
-		printf(" %d", Array[i]);
-	}
-	putchar('\n');
-	return 0;
+#include <iostream>
+using namespace std;
+const int maxn = 110;
+void Reverse(int a[], int start, int end) {
+    for(int i = start; i <= (start + end) / 2; i++) {
+        int temp = a[i];
+        a[i] = a[end + start - i];
+        a[end + start - i] = temp;
+    }
 }
-
-void reverse(int *array, int start, int end) {
-	int i, temp;
-	for(i = start; i <= (start + end) / 2; i++) {
-		temp = array[i];
-		array[i] = array[start + end - i];
-		array[start + end - i] = temp;
-	}
+int main() {
+    int n, m, a[maxn];
+    cin >> n >> m;
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    m %= n;
+    Reverse(a, 0, n - m - 1);
+    Reverse(a, n - m, n - 1);
+    Reverse(a, 0, n - 1);
+    for(int i = 0; i < n; i++) {
+        cout << a[i];
+        if(i != n - 1) cout << ' ';
+    }
+    return 0;
 }
 
 */
