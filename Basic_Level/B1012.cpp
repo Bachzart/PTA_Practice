@@ -1,63 +1,35 @@
-#include <stdio.h>
+#include <cstdio>
 
-int main(int argc, char const *argv[]) {
-	int Array[6] = {0}, i, N, sign = 1, temp, sum_A4 = 0, flag = 0;
-	double average_A4 = 0.0;
-	scanf("%d", &N);
-	for(i = 0; i < N; i++) {
-		scanf("%d", &temp);
-		// calculate A1
-		if(temp % 5 == 0 && temp % 2 == 0) {
-			Array[1] += temp;
-		}
-		// calculate A2, attention: A2 may is 0
-		if(temp % 5 == 1) {
-			flag = 1;
-			Array[2] += (temp * sign);
-			sign = - sign;
-		}
-		// calculate A3
-		if(temp % 5 == 2) {
-			Array[3]++;
-		}
-		// calculate A4
-		if(temp % 5 == 3) {
-			Array[4]++;
-			sum_A4 += temp;
-		}
-		// calculate A5
-		if(temp % 5 == 4) {
-			if(temp > Array[5]) {
-				Array[5] = temp;
-			}
-		}
-	}
-	average_A4 = 1.0 * sum_A4 / Array[4];
-	//print
-	if(Array[1]) {
-		printf("%d ", Array[1]);
-	} else {
-		printf("N ");
-	}
-	if(flag) {
-		printf("%d ", Array[2]);
-	} else {
-		printf("N ");
-	}
-	if(Array[3]) {
-		printf("%d ", Array[3]);
-	} else {
-		printf("N ");
-	}
-	if(Array[4]) {
-		printf("%.1lf ", average_A4);
-	} else {
-		printf("N ");
-	}
-	if(Array[5]) {
-		printf("%d\n", Array[5]);
-	} else {
-		printf("N\n");
-	}
-	return 0;
+int main() {
+    int n, temp, a[6] = {0}, sign = 1, count = 0, flag = 0;
+    scanf("%d", &n);
+    while(n--) {
+        scanf("%d", &temp);
+        int remain = temp % 5;
+        if(remain == 0 && temp % 2 == 0) a[1] += temp;
+        if(remain == 1) {
+            a[2] += sign * temp;
+            sign = -sign;
+            flag = 1;
+        }
+        if(remain == 2) a[3]++;
+        if(remain == 3) {
+            a[4] += temp;
+            count++;
+        }
+        if(remain == 4 && temp > a[5]) {
+            a[5] = temp;
+        }
+    }
+    if(a[1]) printf("%d ", a[1]);
+    else printf("N ");
+    if(flag) printf("%d ", a[2]);
+    else printf("N ");
+    if(a[3]) printf("%d ", a[3]);
+    else printf("N ");
+    if(a[4]) printf("%.1lf ", (double)a[4] / count);
+    else printf("N ");
+    if(a[5]) printf("%d", a[5]);
+    else printf("N");
+    return 0;
 }
