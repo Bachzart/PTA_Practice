@@ -10,8 +10,8 @@ int main() {
 	int i = len1 - 1, j = len2 - 1;
 	if(len1 >= len2) {
 		for(; i >= 0; i--, j--) {
-			index1 = radix.find_first_of(num1[i]);
-			if(j >= 0) index2 = radix.find_first_of(num2[j]);
+			index1 = radix.find(num1[i]);
+			if(j >= 0) index2 = radix.find(num2[j]);
 			else index2 = 0;
 			sum = index1 + index2 + carry;
 			carry = sum / len;
@@ -20,9 +20,9 @@ int main() {
 		if(carry) num[count++] = radix[carry];
 	} else {
 		for(; j >= 0; j--, i--) {
-			if(i >= 0) index1 = radix.find_first_of(num1[i]);
+			if(i >= 0) index1 = radix.find(num1[i]);
 			else index1 = 0;
-			index2 = radix.find_first_of(num2[j]);
+			index2 = radix.find(num2[j]);
 			sum = index1 + index2 + carry;
 			carry = sum / len;
 			num[count++] = radix[sum % len]; 
