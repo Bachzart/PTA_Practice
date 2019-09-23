@@ -5,24 +5,30 @@ int array[maxk] = {0};
 int main() {
 	int k;
 	cin >> k;
-	for(int i = 0; i < k; i++) {
+	bool flag = false;
+	for(int i = 1; i <= k; i++) {
 		cin >> array[i];
+		if(array[i] >= 0) flag = true;
 	}
-	int left = 0, right = k - 1, temp_left = 0;
-	int ThisSum = 0, MaxSum = 0;
-	for(int i = 0; i < k; i++) {
-		ThisSum += array[i];
-		if(ThisSum > MaxSum) {
-			MaxSum = ThisSum;
-			left = temp_left;
-			right = i;
-		} else if(ThisSum < 0) {
-			ThisSum = 0;
-			temp_left = i + 1;
+	if(!flag) {
+		cout << 0 << ' ' << array[1] << ' ' << array[k] << endl;
+	} else {
+		int left = 1, right = k, temp_left = 1;
+		int ThisSum = 0, MaxSum = -1;
+		for(int i = 1; i <= k; i++) {
+			ThisSum += array[i];
+			if(ThisSum > MaxSum) {
+				MaxSum = ThisSum;
+				left = temp_left;
+				right = i;
+			} else if(ThisSum < 0) {
+				ThisSum = 0;
+				temp_left = i + 1;
+			}
 		}
+		if(MaxSum) cout << MaxSum << ' ' << array[left] << ' ' << array[right] << endl;
+		else cout << MaxSum << ' ' << array[left] << ' ' << array[right] << endl;
 	}
-	if(MaxSum) cout << MaxSum << ' ' << left << ' ' << right << endl;
-	else cout << MaxSum << ' ' << array[left] << ' ' << array[right] << endl;
 	return 0;
 }
 
@@ -38,7 +44,7 @@ in:
 3
 1 0 -1
 out:
-1 0 0
+1 1 1
 
 in:
 3
@@ -48,23 +54,24 @@ out:
 
 in:
 6
--2 11 -4 13 -5 -2 
+-2 11 -4 13 -5 -2
 out:
-20 1 3
+20 11 13
 
 in:
 5
 -2 11 -3 3 -1
 out:
-11 1 1
+11 11 11
 
 in:
 3
 -1 2 -1
 out:
-2 1 1
+2 2 2
 
-in: 
+in:
+3
 -1 -1 0
 out:
 0 0 0
