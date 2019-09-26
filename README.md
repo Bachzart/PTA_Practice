@@ -1,6 +1,6 @@
 # Guide
-This repo is used to record the problems and approachs of Data Structures and Algorithms in PTA.
+This repo is used to record the problems and parallel approachs in PTA.
 
-You can find some solutions about these problems in my [blog](https://bachzart.github.io).
+You can find some solutions about these problems in the every directory
 
-If you have some questions about some problems or mistakes in article, you can contact me.
+If you have some questions about some problems or find some mistakes, you can contact me with my email: bachzart@outlook.com. :)
