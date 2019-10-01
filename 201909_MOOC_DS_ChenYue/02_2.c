@@ -30,7 +30,6 @@ Polynomial ReadPoly() {
 			p = t;
 		}
 	}
-
 	return P;
 }
 void Print(Polynomial P) {
