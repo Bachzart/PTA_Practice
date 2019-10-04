@@ -10,15 +10,11 @@ int main() {
 	string str;
 	queue<int> q;
 	while(1) {
-		getline(cin, str);
+		cin >> str;
 		if(str == "#") break;
 		int id = 0;
 		if(str != "Calling") {
-			for(int i = 0; i < str.length(); i++) {
-				if('0' <= str[i] && str[i] <= '9') {
-					id = id * 10 + (str[i] - '0');
-				}
-			}
+			cin >> id;
 			if(q.size() >= n) {
 				cout << id << " rejected." << endl;
 				continue;

@@ -26,8 +26,7 @@ int main() {
 				temp_left = i + 1;
 			}
 		}
-		if(MaxSum) cout << MaxSum << ' ' << array[left] << ' ' << array[right] << endl;
-		else cout << MaxSum << ' ' << array[left] << ' ' << array[right] << endl;
+		cout << MaxSum << ' ' << array[left] << ' ' << array[right] << endl;
 	}
 	return 0;
 }
