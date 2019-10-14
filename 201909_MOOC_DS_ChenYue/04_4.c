@@ -1,3 +1,4 @@
+/* use recursion to judge two trees is same or not */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
