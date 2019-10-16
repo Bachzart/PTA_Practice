@@ -1,5 +1,5 @@
 /* constitute two trees and their preordered sequence, then compare these 
-sequence is same or not */
+sequences is same or not */
 #include <iostream>
 using namespace std;
 const int maxn = 15;
