@@ -28,7 +28,6 @@ void Percolatedown(MinHeap H, int k) {
 		if(tmp > H->Data[child]) H->Data[parent] = H->Data[child];
 		else break;
 	}
-//	printf("parent = %d\n", parent);
 	H->Data[parent] = tmp;
 }
 void Percolateup(MinHeap H, int k) {
@@ -95,7 +94,6 @@ int main() {
 		scanf("%d", &seq[i]);
 	}
 	MinHeap h2 = Buildheap(seq, m, m);
-//	printf("--\n");
 	Printheap(h2);
 	return 0;
 } 
