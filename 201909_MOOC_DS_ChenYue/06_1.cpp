@@ -73,7 +73,7 @@ void DFS(MGraph Graph, Vertex V, void (*Visit)(Vertex), int Visited[]) {
     }
 }
 void BFS(MGraph Graph, Vertex S, void (*Visit)(Vertex), int Visited[]) {
-    int Queue[MaxVertexNum], front = -1, rear = -1;	// use a simple queue
+    Vertex Queue[MaxVertexNum], front = -1, rear = -1;	// use a simple queue
     Vertex V, W;
     Visit(S);
     Visited[S] = true;
