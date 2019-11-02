@@ -45,6 +45,6 @@ int main() {
 //	dfs(v2, num2);
 	num2 = bfs(v2);
 	cout << num1 << endl << num2 << endl;
-	isvisit[v1] ? cout << "Yes" : cout << "No";
+	cout << (isvisit[v1] ? "Yes" : "No"); 
 	return 0;
 } 
