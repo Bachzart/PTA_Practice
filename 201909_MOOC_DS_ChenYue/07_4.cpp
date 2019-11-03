@@ -3,13 +3,6 @@ using namespace std;
 const int maxn = 100 + 5;
 const int inf = 0x3fffffff;
 int n, m, G[maxn][maxn], dist[maxn][maxn];
-void init() {
-	for(int i = 0; i < maxn; i++) {
-		for(int j = 0; j < maxn; j++) {
-			G[i][j] = inf;
-		}
-	}
-}
 void floyd() {
 	for(int i = 1; i <= n; i++) {
 		for(int j = 1; j <= n; j++) {
@@ -47,7 +40,7 @@ void findanimal() {
 	cout << animal << ' ' << mindist;
 }
 int main() {
-	init();
+	fill(G[0], G[0] + maxn * maxn, inf);
 	cin >> n >> m;
 	int v1, v2;
 	for(int i = 0; i < m; i++) {
