@@ -34,6 +34,7 @@ void prim() {
 	}
 	int cnt = 0;
 	for (int i = 1; i <= nv; i++) {
+		printf("%d\n", dist[i]);
 		cnt += dist[i];
 	}
 	if (times == nv) printf("%d", cnt);
