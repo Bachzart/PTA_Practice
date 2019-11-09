@@ -15,7 +15,7 @@ void prim() {
 	for (int i = 0; i < maxn; i++) dist[i] = inf;
 	dist[1] = 0;
 	int times = 0, totalweight = 0;
-	for (int t = 1; t <= nv; t++) {
+	while(1) {
 		int mindis = inf, v = -1;
 		for (int i = 1; i <= nv; i++) {
 			if (!visited[i] && dist[i] < mindis) {
