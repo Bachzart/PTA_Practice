@@ -14,7 +14,7 @@ void init() {
 void prim() {
 	for (int i = 0; i < maxn; i++) dist[i] = inf;
 	dist[1] = 0;
-	int times = 0;
+	int times = 0, totalweight = 0;
 	for (int t = 1; t <= nv; t++) {
 		int mindis = inf, v = -1;
 		for (int i = 1; i <= nv; i++) {
@@ -26,18 +26,14 @@ void prim() {
 		if (v == -1) break;
 		times++;
 		visited[v] = true;
+		totalweight += dist[v];
 		for (int w = 1; w <= nv; w++) {
 			if (G[v][w] != inf && !visited[w] && G[v][w] < dist[w]) {
 				dist[w] = G[v][w];
 			}
 		}
 	}
-	int cnt = 0;
-	for (int i = 1; i <= nv; i++) {
-		printf("%d\n", dist[i]);
-		cnt += dist[i];
-	}
-	if (times == nv) printf("%d", cnt);
+	if (times == nv) printf("%d", totalweight);
 	else printf("-1");
 }
 int main() {
