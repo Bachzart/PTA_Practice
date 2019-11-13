@@ -39,7 +39,6 @@ void topsort() {
 			}
 			if (indegree[G[v][w].w] == 0) {
 				q.push(G[v][w].w);
-				
 			}
 		}
 	}
