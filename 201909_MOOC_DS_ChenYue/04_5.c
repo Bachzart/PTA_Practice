@@ -60,6 +60,12 @@ Tree insert(Tree root, int data) {
 	root->height = max(getheight(root->lchild), getheight(root->rchild)) + 1;
 	return root;
 }
+void postorder(Tree root) {
+	if(!root) return;
+	postorder(root->lchild);
+	postorder(root->rchild);
+	printf("%d ", root->data);
+}
 int main() {
 	int i, n, data;
 	scanf("%d", &n);
@@ -69,5 +75,6 @@ int main() {
 		root = insert(root, data);
 	}
 	printf("%d", root->data);
+	//postorder(root);
 	return 0;
 }

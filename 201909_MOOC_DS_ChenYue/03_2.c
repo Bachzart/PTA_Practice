@@ -86,7 +86,6 @@ void leverorder(int root) {
 				flag = false;
 			} else printf(" %d", front);
 		}
-
 		if(T[front].left != -1) Enqueue(Q, T[front].left);
 		if(T[front].right != -1) Enqueue(Q, T[front].right);
 	}

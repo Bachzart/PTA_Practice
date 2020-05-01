@@ -30,6 +30,13 @@ void myqsort(int *array, int left, int right) {
 	if(cutoff <= right - left) {
 		pivot = median3(array, left, right);
 		low = left, high = right - 1;
+		
+		printf("pivot = %d\n", pivot);
+		for(int i = 0; i < n; i++) {
+			printf("%d ", array[i]);
+		} 
+		printf("\n");
+		
 		while(true) {
 			while(array[++low] < pivot);
 			while(array[--high] > pivot);
@@ -37,6 +44,12 @@ void myqsort(int *array, int left, int right) {
 			else break;
 		}
 		swap(&array[low], &array[right - 1]);
+		
+		for(int i = 0; i < n; i++) {
+			printf("%d ", array[i]);
+		} 
+		printf("\n");
+		
 		myqsort(array, left, low - 1);
 		myqsort(array, low + 1, right);
 	} else insertion_sort(array + left, right - left + 1);
