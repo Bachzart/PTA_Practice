@@ -1,6 +1,6 @@
 /* notes: The adjacency list is built by head pointer, so the traversal sequences
-is not same as sample output. Actually, because the adjacency list is not 
-unique, so the traversal sequences also is not unique. You can use the sort
+is not same as sample output. Actually, the adjacency list is not 
+unique, so the traversal sequences are also not unique. You can use the sort
 function to get the same result. 
  */
 
