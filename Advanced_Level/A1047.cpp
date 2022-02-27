@@ -1,3 +1,4 @@
+/* way 1: use number */
 #include <cstdio>
 #include <vector>
 #include <cstring>
@@ -31,3 +32,37 @@ int main(int argc, char const *argv[]) {
 	}
 	return 0;
 }
+
+/* way 2: use string */
+/*
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+const int K = 2500 + 5;
+vector<string> course[K];
+
+int main() {
+	int n, k, course_num;
+	scanf("%d %d", &n, &k);
+	char name[5];
+	for(int i = 0; i < n; i++) {
+		scanf("%s %d", name, &course_num);
+		for(int j = 0; j < course_num; j++) {
+			int course_id;
+			scanf("%d", &course_id);
+			course[course_id].push_back(name);
+		}
+	}
+	for(int i = 1; i <= k; i++) {
+		sort(course[i].begin(), course[i].end());
+		printf("%d %d\n", i, course[i].size());
+		for(int j = 0; j < course[i].size(); j++) {
+			cout << course[i][j] << '\n';
+		}
+	}
+	return 0;
+}
+*/
