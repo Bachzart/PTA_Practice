@@ -1,21 +1,17 @@
-#include <stdio.h>
-#define MAXN 10
+#include <cstdio>
 
-int main(int argc, char const *argv[]) {
-	int i, j, N, Array[MAXN], Sum = 0;
-	scanf("%d", &N);
-	for(i = 0; i < N; i++) {
-		scanf("%d", &Array[i]);
-	}
-	for(i = 0; i < N; i++) {
-		for(j = 0; j < N; j++) {
-			if(i == j) {
-				continue;
-			} else {
-				Sum += (Array[i] * 10 + Array[j]);
-			}
+int main() {
+	int n, arr[15], sum = 0;
+	scanf("%d", &n);
+	for(int i = 0; i < n; i++) {
+		scanf("%d", &arr[i]); 
+	} 
+	for(int i = 0; i < n; i++) {
+		sum = sum + (arr[i] * 10 * (n - 1));
+		for(int j = 0; j < n; j++) {
+			if(j != i) sum += arr[i]; 
 		}
 	}
-	printf("%d\n", Sum);
-	return 0;
+	printf("%d", sum);
+	return 0;	                 	
 }
