@@ -1,20 +1,15 @@
-#include <stdio.h>
-#define MAXN 105
-int Wifi_Password[4] = {1, 2, 3, 4};
+#include <cstdio>
 
-int main(int argc, char const *argv[]) {
-	int i, N, count = 0;
-	scanf("%d%*c", &N);
-	char Answers[MAXN], temp, flag;
-	for(i = 0; i < 4 * N; i++) {
-		scanf("%c-%c%*c", &temp, &flag);
-		if(flag == 'T') {
-			Answers[count++] = temp;
-		}
+int main() {
+	int n, wifi_password[105] = {0}, count = 0;
+	scanf("%d%*c", &n);
+	char opt, taf;
+	for(int i = 0; i < 4 * n; i++) {
+		scanf("%c-%c%*c", &opt, &taf);
+		if(taf == 'T') wifi_password[count++] = opt - 'A' + 1;
 	}
-	for(i = 0; i < count; i++) {
-		printf("%d", Wifi_Password[Answers[i] - 'A']);
+	for(int i = 0; i < count; i++) {
+		printf("%d", wifi_password[i]);
 	}
-	putchar('\n');
 	return 0;
-} 
+}
