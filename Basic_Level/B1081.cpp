@@ -1,3 +1,37 @@
+// new version
+#include <cstdio>
+#include <cstring>
+#include <cctype>
+char str[85];
+int n;
+
+int main() {
+	scanf("%d%*c", &n);
+	while(n--) {
+		fgets(str, 85, stdin);
+		if(strlen(str) - 1 < 6) {
+			printf("Your password is tai duan le.\n");
+			continue;
+		}
+		bool flag1, flag2, flag3;
+		flag1 = flag2 = flag3 = false;
+		for(int i = 0; str[i] != '\0'; i++) {
+			if(isalpha(str[i])) flag2 = true;
+			else if(isdigit(str[i])) flag3 = true;
+			else if(str[i] == '.' || str[i] == '\n') continue;
+			else flag1 = true;
+		}
+		if(flag1) printf("Your password is tai luan le.\n");
+		else if(flag2 && !flag3) printf("Your password needs shu zi.\n");
+		else if(!flag2 && flag3) printf("Your password needs zi mu.\n");
+		else printf("Your password is wan mei.\n");
+	}
+	return 0;
+}
+
+/* 
+// earlier version
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -52,3 +86,4 @@ int Validity_Check(char *password) {
 	}
 	return ret;
 }
+*/
