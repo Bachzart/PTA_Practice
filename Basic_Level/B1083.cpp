@@ -1,3 +1,4 @@
+// way 1
 #include <cstdio>
 #include <map>
 #include <algorithm>
@@ -21,3 +22,26 @@ int main() {
 	}
 	return 0;
 }
+
+/*
+// way 2
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+const int maxn = 10000 + 5;
+int n, appear[maxn] = {0}, tmp;
+
+int main() {
+	cin >> n;
+	for(int i = 1; i <= n; i++) {
+		cin >> tmp;
+		appear[abs(tmp - i)]++;
+	}
+	for(int i = 9999; i >= 0; i--) {
+		if(appear[i] > 1) cout << i << ' ' << appear[i] << endl;
+	}
+	return 0;
+}
+
+*/
