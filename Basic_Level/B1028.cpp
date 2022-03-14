@@ -1,5 +1,31 @@
-#include <cstdio>
+/* way 1 */
+#include <iostream>
+using namespace std;
+int main() {
+	int n, cnt = 0;
+	cin >> n;
+	string name, birth, maxname, minname, maxbirth = "1814/09/06", minbirth = "2014/09/06";
+	for(int i = 0; i < n; i++) {
+		cin >> name >> birth;
+		if("1814/09/06" <= birth && birth <= "2014/09/06") {
+			cnt++;
+			if(maxbirth <= birth) {
+				maxbirth = birth;
+				maxname = name;
+			}
+			if(minbirth >= birth) {
+				minbirth = birth;
+				minname = name;
+			}
+		}
+	}
+	cout << cnt;
+	if(cnt) cout << ' ' << minname << ' ' << maxname;
+	return 0;
+}
 
+/* way 2: 
+#include <cstdio>
 struct citizen{
 	int year, month, day;
 	char name[7];
@@ -51,3 +77,5 @@ bool More(citizen a, citizen b) {
 	else if(a.month != b.month) return a.month >= b.month;
 	else return a.day >= b.day;
 }
+
+*/

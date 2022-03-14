@@ -1,5 +1,39 @@
+/* version 1*/
 #include <cstdio>
+int change2knut(int g, int s, int k) {
+	int res = k;
+	s = s + g * 17;
+	res = res + s * 29;
+	return res;
+}
 
+int main() {
+	int g, s, k, p, a;
+	scanf("%d.%d.%d", &g, &s, &k);
+	p = change2knut(g, s, k);
+	scanf("%d.%d.%d", &g, &s, &k);
+	a = change2knut(g, s, k);
+	int ans = a - p;
+	if(ans == 0) printf("0.0.0\n");
+	else {
+		int flag = 1;
+		if(ans < 0) {
+			ans = -ans;
+			flag = 0;
+		}
+		k = ans % 29;
+		s = (ans / 29) % 17;
+		g = ans / 29 / 17;
+		if(!flag) printf("-");
+		printf("%d.%d.%d\n", g, s, k);
+	}
+	return 0;
+} 
+
+
+/* version 2
+
+#include <cstdio>
 struct money {
 	int g, s, k;
 } P, A, Result;
@@ -43,3 +77,4 @@ money Substract(money big, money small) {
 	ret.g = big.g - small.g;
 	return ret;
 }
+*/
