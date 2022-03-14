@@ -29,6 +29,5 @@ int main(int argc, char const *argv[]) {
 			n = diff;
 		}
 	}
-	
 	return 0;
 } 

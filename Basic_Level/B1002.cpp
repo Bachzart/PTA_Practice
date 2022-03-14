@@ -37,17 +37,14 @@ int main(int argc, char const *argv[]) {
 	} while(mask > 0);
 	*/ 
 	/*method 2:*/
-	char num2chinese[][6] = {"ling", "yi", "er", "san", "si", "wu", "liu", "qi", "ba", "jiu"};
+	char num2chi[][6] = {"ling", "yi", "er", "san", "si",
+	 "wu", "liu", "qi", "ba", "jiu"};
 	int unit, tens, hundred;
 	unit = sum % 10;
 	tens = sum / 10 % 10;
 	hundred = sum / 100;
-	if(sum > 100) {
-		printf("%s %s %s\n", num2chinese[hundred], num2chinese[tens], num2chinese[unit]);
-	} else if (10 < sum && sum < 100){
-		printf("%s %s\n", num2chinese[tens], num2chinese[unit]);
-	} else {
-		printf("%s\n", num2chinese[unit]);
-	}
+	if(sum > 100) printf("%s %s %s\n", num2chi[hundred], num2chi[tens], num2chi[unit]);
+	else if (10 < sum && sum < 100) printf("%s %s\n", num2chi[tens], num2chi[unit]);
+	else printf("%s\n", num2chi[unit]);
 	return 0;
 }

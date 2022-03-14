@@ -2,12 +2,15 @@
 #include <algorithm>
 using namespace std;
 const int MAXN = 100000 + 5;
-
 struct student{
 	int id, scoreD, scoreC, sumCD, flag;
 } stu[MAXN];
-
-bool cmp(student a, student b);
+bool cmp(student a, student b) {
+	if(a.flag != b.flag) return a.flag < b.flag;
+	else if(a.sumCD != b.sumCD) return a.sumCD > b.sumCD;
+	else if(a.scoreD != b.scoreD) return a.scoreD > b.scoreD;
+	else return a.id < b.id;
+}
 int N, L, H, M = 0;
 
 int main(int argc, char const *argv[]) {
@@ -34,11 +37,4 @@ int main(int argc, char const *argv[]) {
 		printf("%d %d %d\n", stu[i].id, stu[i].scoreD, stu[i].scoreC);
 	}
 	return 0;
-}
-
-bool cmp(student a, student b) {
-	if(a.flag != b.flag) return a.flag < b.flag;
-	else if(a.sumCD != b.sumCD) return a.sumCD > b.sumCD;
-	else if(a.scoreD != b.scoreD) return a.scoreD > b.scoreD;
-	else return a.id < b.id;
 }

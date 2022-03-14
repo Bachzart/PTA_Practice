@@ -24,11 +24,8 @@ int main(int argc, char const *argv[]) {
 			continue;
 		}
 		int x = pos_p, y = pos_t - pos_p - 1, z = len - pos_t - 1;
-		if(z - x * (y - 1) == x) {
-			printf("YES\n");
-		} else {
-			printf("NO\n");
-		}
+		if(z - x * (y - 1) == x) printf("YES\n");
+		else printf("NO\n");
 	}
 	return 0;
 }

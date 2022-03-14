@@ -25,9 +25,7 @@ int main(int argc, char const *argv[]) {
 			if(flag) {
 				printf("%d", Num[i]);
 				flag = false;
-			} else {
-				printf(" %d", Num[i]);
-			}
+			} else printf(" %d", Num[i]);
 		}
 	}
 	return 0;

@@ -3,11 +3,11 @@
 using namespace std;
 const int MAXN = 1000 + 5;
 struct mooncake{
-	double store;
-	double sell;
-	double price;
+	double store, sell, price;
 } cake[MAXN];
-bool cmp(mooncake a, mooncake b);
+bool cmp(mooncake a, mooncake b) {
+	return a.price > b.price;
+}
 
 int main(int argc, char const *argv[]) {
 	int N;
@@ -34,7 +34,3 @@ int main(int argc, char const *argv[]) {
 	printf("%.2lf\n", ans);
 	return 0;
 } 
-
-bool cmp(mooncake a, mooncake b) {
-	return a.price > b.price;
-}
