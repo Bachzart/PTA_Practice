@@ -17,6 +17,12 @@ int main() {
 		else zero++;
 		tmp /= 2; 
 	}
+	/* you can also use digit operation
+	for(; tmp; tmp >>= 1) {
+		if(tmp & 1) one++;
+		else zero++;
+	}
+	*/
 	printf("%d %d", zero, one);
 	return 0;
 }

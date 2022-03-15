@@ -1,3 +1,36 @@
+/* way 1 */
+#include <iostream>
+#include <algorithm>
+using namespace std;
+const int maxn = 100000 + 5;
+int n, arr[maxn] = {0}, tmp[maxn], ans[maxn] = {0};
+
+int main() {
+	cin >> n;
+	for(int i = 1; i <= n; i++) {
+		cin >> arr[i];
+		tmp[i] = arr[i];
+	} 
+	sort(tmp, tmp + n);
+	int cnt = 0, max = 0;
+	for(int i = 1; i <= n; i++) {
+		if(arr[i] == tmp[i] && max < arr[i]) ans[cnt++] = arr[i];
+		if(arr[i] > max) max = arr[i];
+	}
+	cout << cnt << endl;
+	if(cnt) {
+		for(int i = 0; i < cnt; i++) {
+			cout << ans[i];
+			if(i != cnt - 1) cout << ' ';
+		}
+	}
+	cout << endl;
+	return 0;
+} 
+
+
+/* way 2
+
 #include <cstdio>
 #include <algorithm>
 using namespace std; 
@@ -33,3 +66,5 @@ int main(int argc, char const *argv[]) {
 	putchar('\n');
 	return 0;
 }
+
+*/
