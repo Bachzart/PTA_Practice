@@ -1,37 +1,32 @@
 #include <iostream>
 #include <stack>
 using namespace std;
-const int maxn = 1010;
-int arr[maxn] = {0};
-stack<int> st;
-int main(int argc, char const *argv[]) {
-	int m, n, t;
-	scanf("%d %d %d", &m, &n, &t);
-	while(t--) {
-		while(!st.empty()) {	//clear stack
-			st.pop();
-		}
+const int maxn = 1000 + 5;
+int seq[maxn] = {0};
+
+int main() {
+	int n, m, k, tmp;
+	cin >> m >> n >> k;
+	while(k--) {
 		for(int i = 1; i <= n; i++) {
-			scanf("%d", &arr[i]);
+			cin >> seq[i];
 		}
-		int current = 1;
+		int index = 1;
 		bool flag = true;
+		stack<int> st;
 		for(int i = 1; i <= n; i++) {
 			st.push(i);
 			if(st.size() > m) {
 				flag = false;
 				break;
 			}
-			while(!st.empty() && st.top() == arr[current]) {
+			while(!st.empty() && st.top() == seq[index]) {
 				st.pop();
-				current++;
+				index++;
 			}
 		}
-		if(st.empty() == true && flag == true) {
-			printf("YES\n");
-		} else {
-			printf("NO\n");
-		}
+		if(st.empty() && flag) cout << "YES" << endl;
+		else cout << "NO" << endl;
 	}
 	return 0;
 }
