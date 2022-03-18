@@ -27,9 +27,7 @@ int main(int argc, char const *argv[]) {
 			for(int j = 0; j < ng; j++) {
 				if(i * ng + j >= temp) break;
 				int front = q.front();
-				if(mouse[front].weight > mouse[k].weight) {
-					k = front;
-				}
+				if(mouse[front].weight > mouse[k].weight) k = front;
 				mouse[front].r = group + 1;
 				q.pop();
 			}
