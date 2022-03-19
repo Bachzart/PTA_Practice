@@ -12,7 +12,6 @@ int main() {
 			i = 0;
 		}
 	}
-	
 	if(i != 0) printf("\n");
 	printf("Sum = %d\n", sum);
 	return 0;
