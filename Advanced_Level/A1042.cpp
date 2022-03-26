@@ -1,3 +1,31 @@
+/* version 2 */
+#include <cstdio>
+int k, shuffle[55], tmp1[55], tmp2[55];
+char cards[6] = "SHCDJ";
+
+int main() {
+	scanf("%d", &k);
+	for(int i = 1; i <= 54; i++) {
+		scanf("%d", &shuffle[i]);
+		tmp2[i] = i;
+	}
+	for(int i = 1; i <= k; i++) {
+		for(int i = 1; i <= 54; i++) {
+			tmp1[shuffle[i]] = tmp2[i];
+		}
+		for(int i = 1; i <= 54; i++) {
+			tmp2[i] = tmp1[i];
+		}
+	}
+	for(int i = 1; i <= 54; i++) {
+		printf("%c%d", cards[(tmp1[i] - 1) / 13] , (tmp1[i] - 1) % 13 + 1);
+		if(i != 54) printf(" ");
+	}
+	return 0;
+} 
+
+/* version 1
+
 #include <iostream>
 using namespace std;
 char playcards[55][5] = {
@@ -41,3 +69,4 @@ int main() {
     }
     return 0;
 }
+*/
