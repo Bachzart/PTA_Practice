@@ -4,6 +4,8 @@ test point 5, like this:
 3 2 2.4 1 2.4 0 -3.2
 */
 
+/* method 1: use linked list */
+
 #include <cstdio>
 #include <cstdlib>
 
@@ -112,4 +114,36 @@ void Attach(double c, int e, Polynomial *pRear) {
 	P->link = NULL;
 	(*pRear)->link = P;
 	*pRear = P;
+}
+
+/* method 2: use array*/
+#include <cstdio>
+void readp(int nums, double *poly) {
+	int exp;
+	double coe;
+	for(int i = 0; i < nums; i++) {
+		scanf("%d %lf", &exp, &coe);
+		poly[exp] = coe;
+	}
+}
+int main() {
+	double L1[1005] = {0}, L2[1005] = {0}, L[1005] = {0};
+	int k1, k2, exp;
+	double coe;
+	scanf("%d", &k1);
+	readp(k1, L1);
+	scanf("%d", &k2);
+	readp(k2, L2);
+	int cnt = 0;
+	for(int i = 0; i < 1005; i++) {
+		L[i] = L1[i] + L2[i];
+		if(L[i] != 0) cnt++;
+	}
+	printf("%d", cnt);
+	if(cnt) {
+		for(int i = 1000; i >= 0; i--) {
+			if(L[i] != 0) printf(" %d %.1lf", i, L[i]);
+		}
+	}
+	return 0;
 }
