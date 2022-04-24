@@ -1,3 +1,4 @@
+/* method 1: use linked list */
 #include <cstdio>
 #include <cstdlib>
 
@@ -129,4 +130,40 @@ int GetNum(Polynomial P) {
 		p = p->link;
 	}
 	return ret;
+}
+
+/* method 2: use array */
+#include <cstdio>
+void readp(int nums, double *poly) {
+	int exp;
+	double coe;
+	for(int i = 0; i < nums; i++) {
+		scanf("%d %lf", &exp, &coe);
+		poly[exp] = coe;
+	}
+}
+int main() {
+	double L1[1005] = {0}, L2[1005] = {0}, L[2010] = {0};
+	int k1, k2, exp;
+	double coe;
+	scanf("%d", &k1);
+	readp(k1, L1);
+	scanf("%d", &k2);
+	readp(k2, L2);
+	for(int i = 0; i < 1001; i++) {
+		for(int j = 0; j < 1001; j++) {
+			exp = i + j;
+			coe = L1[i] * L2[j];
+			L[exp] += coe;
+		}
+	}
+	int cnt = 0;
+	for(int i = 0; i <= 2000; i++) {
+		if(L[i] != 0) cnt++;
+	}
+	printf("%d", cnt);
+	for(int i = 2000; i >= 0; i--) {
+		if(L[i] != 0) printf(" %d %.1lf", i, L[i]);
+	}
+	return 0;
 }

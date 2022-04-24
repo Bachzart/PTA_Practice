@@ -44,3 +44,29 @@ bool Latest(person a, person b) {
 	else if(a.end_mm != b.end_mm) return a.end_mm >= b.end_mm;
 	else return a.end_ss >= b.end_ss;
 }
+
+/* simplification */
+#include <iostream>
+using namespace std;
+
+int main() {
+	int m;
+	cin >> m;
+	string early, late, earliest, latest, tmp, come, leave;
+	cin >> early >> earliest >> latest;
+	late = early;
+	m--;
+	while(m--) {
+		cin >> tmp >> come >> leave;
+		if(come < earliest) {
+			early = tmp;
+			earliest = come;
+		}
+		if(leave > latest) {
+			late = tmp;
+			latest = leave;
+		}
+	}
+	cout << early << ' ' << late;
+	return 0;
+} 

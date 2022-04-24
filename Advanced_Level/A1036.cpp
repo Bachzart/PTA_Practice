@@ -53,3 +53,39 @@ bool Highest(student a, student b) {
 bool Lowest(student a, student b) {
 	return a.grade <= b.grade;
 }
+
+/* simplification */
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n;
+	cin >> n;
+	string malename, femalename, maleid, femaleid, name, clas, maleclass, femaleclass;
+	char gender;
+	int grade, highest = -1, lowest = 101;
+	while(n--) {
+		cin >> name >> gender >> clas >> grade;
+		if(gender == 'M') {
+			if(grade < lowest) {
+				lowest = grade;
+				malename = name;
+				maleclass = clas;
+			}
+		}
+		if(gender == 'F') {
+			if(grade > highest) {
+				highest = grade;
+				femalename = name;
+				femaleclass = clas;
+			}
+		}
+	}
+	if(highest < 0) cout << "Absent\n";
+	else cout << femalename << ' ' << femaleclass << endl;
+	if(lowest > 100) cout << "Absent\n";
+	else cout << malename << ' ' << maleclass << endl;
+	if(lowest > 100 || highest < 0) cout << "NA\n";
+	else cout << highest - lowest;
+	return 0;
+} 
