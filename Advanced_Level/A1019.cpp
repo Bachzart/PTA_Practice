@@ -39,3 +39,37 @@ bool PalindromicNum(long long *digits, long long count) {
 	}
 	return flag;
 }
+
+/* simplification */
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	int n, k;
+	cin >> n >> k;
+	if(n == 0) {
+		cout << "Yes\n" << 0;	
+	} else {
+		vector<int> digits;
+		while(n) {
+			digits.push_back(n % k);
+			n /= k;
+		}
+		int size = digits.size();
+		bool flag = true;
+		for(int i = 0; i < size / 2; i++) {
+			if(digits[i] != digits[size - i - 1]) {
+				flag = false;
+				break;
+			}
+		}
+		if(flag) cout << "Yes\n";
+		else cout << "No\n";
+		for(int i = size - 1; i >= 0; i--) {
+			cout << digits[i];
+			if(i > 0) cout << ' ';
+		}
+	}
+	return 0;
+} 

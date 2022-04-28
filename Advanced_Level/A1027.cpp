@@ -44,3 +44,34 @@ char Change(int number) {
 	}
 	return ret;
 }
+
+/* simplification */
+#include <iostream>
+#include <algorithm>
+#include <map>
+using namespace std;
+map<int, string> marscolors;
+char num2char(int num) {
+	char ret = '0';
+	if(0 <= num && num <= 9) ret += num;
+	else ret = 'A' + num - 10;
+	return ret;
+}
+int main() {
+	marscolors[0] = "00";
+	for(int i = 1; i < 169; i++) {
+		int tmp = i;
+		string s;
+		while(tmp) {
+			s += num2char(tmp % 13);
+			tmp /= 13;
+		}
+		if(i < 13) s += "0";
+		reverse(s.begin(), s.end());
+		marscolors[i] = s;
+	}
+	int red, green, blue;
+	cin >> red >> green >> blue;
+	cout << "#" << marscolors[red] << marscolors[green] << marscolors[blue];
+	return 0;
+} 

@@ -24,3 +24,30 @@ int main(int argc, char const *argv[]) {
 	}
 	return 0;
 }
+
+/* simplification */
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+	string str;
+	cin >> str;
+	int n1, n2 = 3, n3, len = str.length();
+	while(true) {
+		int diff = len - n2;
+		if(diff % 2 == 0) {
+			n1 = n3 = diff / 2;
+			if(n2 > n1) break;
+		}
+		n2++;
+	}
+	int i, j;
+	for(i = 0, j = len - 1; i < n1 && j > len - n3 - 1; i++, j--) {
+		cout << str[i];
+		for(int k = 0; k < n2 - 2; k++) cout << ' ';
+		cout << str[j] << endl;
+	}
+	while(i <= j) cout << str[i++];
+	return 0;
+}

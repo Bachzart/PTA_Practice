@@ -49,3 +49,40 @@ void Reverse(char *s) {
 		s[len - i - 1] = temp;
 	}
 }
+
+/* C++ */
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, minlen = 0x3fffffff;
+	cin >> n;
+	getchar();
+	vector<string> strs;
+	for(int i = 0; i < n; i++) {
+		string tmp;
+		getline(cin, tmp);
+		reverse(tmp.begin(), tmp.end());
+		strs.push_back(tmp);
+		if(tmp.length() < minlen) minlen = tmp.length();
+	}
+	string ans;
+	bool flag = false;
+	for(int i = 0; i < minlen; i++) {
+		char tmp = strs[0][i];
+		for(int j = 1; j < n; j++) {
+			if(strs[j][i] != tmp) {
+				flag = true;
+				break;
+			}
+		}
+		if(flag) break;
+		ans += tmp;
+	}
+	reverse(ans.begin(), ans.end());
+	if(ans != "") cout << ans;
+	else cout << "nai";
+	return 0;
+} 

@@ -1,3 +1,4 @@
+/* method 1 */
 #include <cstdio>
 const int MAXN = 100 + 5;
 
@@ -37,5 +38,53 @@ int main(int argc, char const *argv[]) {
 		mask /= 10;
 	}
 	putchar('\n');
+	return 0;
+}
+
+/* method 2 */
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+unordered_map<int, string> num2english = {{0, "zero"}, {1, "one"}, {2, "two"}, {3, "three"}, 
+{4, "four"}, {5, "five"}, {6, "six"}, {7, "seven"}, {8, "eight"}, {9, "nine"}};
+
+int main() {
+	string str;
+	cin >> str;
+	int sum = 0;
+	for(int i = 0; i < str.length(); i++) {
+		sum += str[i] - '0';
+	}
+	str = to_string(sum);
+	for(int i = 0; i < str.length(); i++) {
+		cout << num2english[str[i] - '0'];
+		if(i != str.length() - 1) cout << ' ';
+	}
+	return 0;
+}
+
+/* method 3 */
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+unordered_map<int, string> num2english = {{0, "zero"}, {1, "one"}, {2, "two"}, {3, "three"}, 
+{4, "four"}, {5, "five"}, {6, "six"}, {7, "seven"}, {8, "eight"}, {9, "nine"}};
+
+void dfs(int n) {
+	if(n / 10 == 0) {
+		cout << num2english[n % 10];
+		return;
+	}
+	dfs(n / 10);
+	cout << ' ' << num2english[n % 10];
+}
+int main() {
+	string str;
+	cin >> str;
+	int sum = 0;
+	for(int i = 0; i < str.length(); i++) {
+		sum += str[i] - '0';
+	}
+	dfs(sum);
 	return 0;
 }
