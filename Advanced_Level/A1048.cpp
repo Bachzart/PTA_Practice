@@ -114,4 +114,38 @@ int main(int argc, char const *argv[]) {
 	return 0;
 } 
 
+/* hash with map
+#include <iostream>
+#include <map>
+using namespace std;
+
+int main() {
+	int n, m, tmp;
+	cin >> n >> m;
+	map<int, int> ht;
+	for(int i = 0; i < n; i++) {
+		cin >> tmp;
+		ht[tmp]++;
+	}
+	bool flag = false;
+	for(auto it = ht.begin(); it != ht.end(); it++) {
+		int diff = m - it->first;
+		if(diff == it->first) {
+			if(it->second >= 2) {
+				cout << it->first << ' ' << it->first;
+				flag = true;
+				break;
+			}
+		} else {
+			if(ht.count(diff)) {
+				cout << it->first << ' ' << diff;
+				flag = true;
+				break;
+			}
+		}
+	}
+	if(!flag) cout << "No Solution";
+	return 0;
+}
+
 */

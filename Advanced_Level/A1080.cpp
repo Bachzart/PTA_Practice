@@ -80,3 +80,74 @@ bool cmpStu(student a, student b) {
 bool cmpID(int a, int b) {
 	return stu[a].id < stu[b].id;
 }
+
+/* C++ */
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+const int maxn = 40000 + 5;
+struct student {
+	int ge, gi, id, rank;
+	int sum;
+	int choices[6];
+} stu[maxn];
+int n, m, k;
+int quota[105] = {0};
+int lastrank[105] = {0};
+bool cmp(student a, student b) {
+	if(a.sum != b.sum) return a.sum > b.sum;
+	else return a.ge > b.ge;
+}
+int main() {
+	cin >> n >> m >> k;
+	for(int i = 0; i < m; i++) {
+		cin >> quota[i];
+	}
+	for(int i = 0; i < n; i++) {
+		cin >> stu[i].ge >> stu[i].gi;
+		stu[i].sum = stu[i].ge + stu[i].gi;
+		stu[i].id = i;
+		for(int j = 0; j < k; j++) {
+			cin >> stu[i].choices[j];
+		}
+	}
+	sort(stu, stu + n, cmp);
+	stu[0].rank = 1;
+	for(int i = 1; i < n; i++) {
+		if(stu[i].sum == stu[i - 1].sum && stu[i].ge == stu[i - 1].ge) stu[i].rank = stu[i - 1].rank;
+		else stu[i].rank = i + 1;
+	}
+	vector<vector<int>> ans(105);
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < k; j++) {
+			int school = stu[i].choices[j];
+			if(quota[school] != 0) {
+				ans[school].push_back(stu[i].id);
+				quota[school]--;
+				lastrank[school] = stu[i].rank; 
+				break;
+			} else {
+				if(stu[i].rank == lastrank[school]) {
+					ans[school].push_back(stu[i].id);
+					break;
+				}
+			}
+		}
+	}
+	for(int i = 0; i < m; i++) {
+		int size = ans[i].size();
+		if(size == 0) {
+			cout << endl;
+			continue;
+		} else {
+			sort(ans[i].begin(), ans[i].end());
+			cout << ans[i][0];
+			for(int j = 1; j < size; j++) {
+				cout << ' ' << ans[i][j];
+			}
+			cout << endl;
+		}
+	}
+	return 0;
+}
