@@ -25,3 +25,26 @@ int main(int argc, char const *argv[]) {
 	printf("%d", ans);
 	return 0;
 }
+
+/* simplification */ 
+#include <iostream>
+using namespace std;
+
+int main() {
+	string str;
+	cin >> str;
+	int pcnt = 0, tcnt = 0;
+	for(char &ch: str) {
+		if(ch == 'T') tcnt++;
+	}
+	int ans = 0;
+	for(char &ch: str) {
+		if(ch == 'A') {
+			ans += tcnt * pcnt;
+			ans %= 1000000007;
+		} else if(ch == 'P') pcnt++;
+		else tcnt--;
+	}
+	cout << ans;
+	return 0;
+} 

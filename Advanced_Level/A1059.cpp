@@ -57,3 +57,49 @@ int main(int argc, char const *argv[]) {
 	}
 	return 0;
 }
+
+/* C++ */
+#include <cstdio>
+#include <map>
+#include <cmath>
+using namespace std;
+map<long long, int> factors;
+bool isprime(long long n) {
+	if(n <= 1) return false;
+	else {
+		for(long long i = 2; i <= sqrt(n); i++) {
+			if(n % i == 0) return false;
+		}
+		return true;
+	}
+}
+int main() {
+	long long n, tmp, sqr;
+	scanf("%lld", &n);
+	printf("%lld=", n);
+	if(n == 1) printf("%lld", n);
+	else {
+		tmp = n;
+		sqr = sqrt(n);
+		for(long long fa = 2; fa <= sqr; fa++) {
+			if(tmp == 1) break;
+			if(isprime(fa)) {
+				while(tmp % fa == 0) {
+					factors[fa]++;
+					tmp /= fa;
+				}
+			}
+		}
+		if(factors.size() == 0) printf("%lld", n);
+		else {
+			auto it = factors.begin();
+			while(it != factors.end()) {
+				printf("%lld", it->first);
+				if(it->second != 1) printf("^%d", it->second);
+				it++;
+				if(it != factors.end()) printf("*");
+			}
+		}
+	}
+	return 0;
+}

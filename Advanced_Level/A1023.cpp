@@ -54,3 +54,34 @@ int Compare(int *original, int *now, int number) {
 	}
 	return ret;
 }
+
+/* C++ */
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	string num;
+	cin >> num;
+	vector<int> n, dn;
+	for(int i = num.size() - 1; i >= 0; i--) {
+		n.push_back(num[i] - '0');
+	}
+	int carry = 0;
+	for(int i = 0; i < n.size(); i++) {
+		dn.push_back((2 * n[i] + carry) % 10);
+		carry = 2 * n[i] / 10;
+	}
+	if(carry > 0) dn.push_back(carry);
+	string ans;
+	for(int i = dn.size() - 1; i >= 0; i--) {
+		ans.push_back(dn[i] + '0');
+	}
+	sort(n.begin(), n.end());
+	sort(dn.begin(), dn.end());
+	if(n == dn) cout << "Yes" << endl;
+	else cout << "No" << endl;
+	cout << ans;
+	return 0;
+}

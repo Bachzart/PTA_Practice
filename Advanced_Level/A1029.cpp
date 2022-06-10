@@ -27,3 +27,28 @@ int main(int argc, char const *argv[]) {
 	}
 	return 0;
 }
+
+/* Memory limit has been changed to 64 MB. So we can use sort function to slove this problem. */
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main() {
+	vector<int> arr;
+	int n, tmp;
+	cin >> n;
+	for(int i = 0; i < n; i++) {
+		cin >> tmp;
+		arr.push_back(tmp);
+	}
+	cin >> n;
+	for(int i = 0; i < n; i++) {
+		cin >> tmp;
+		arr.push_back(tmp);
+	}
+	sort(arr.begin(), arr.end());
+	int pos = arr.size() % 2 == 1 ? arr.size() / 2 : arr.size() / 2 - 1;
+	cout << arr[pos]; 
+	return 0;
+}

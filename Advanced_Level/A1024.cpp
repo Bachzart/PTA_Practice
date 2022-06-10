@@ -74,3 +74,39 @@ int main(int argc, char const *argv[]) {
 	printf("%d", count);
 	return 0;
 }
+
+/* C++ */
+#include <iostream>
+#include <algorithm>
+using namespace std;
+bool ispalindromic(string &num) {
+	int left = 0, right = num.length() - 1;
+	while(left < right) {
+		if(num[left] != num[right]) return false;
+		left++, right--;
+	}
+	return true;
+}
+int main() {
+	int k;
+	string num, tmp;
+	cin >> num >> k;
+	int i;
+	reverse(num.begin(), num.end());
+	for(i = 0; i < k; i++) {
+		if(ispalindromic(num)) break;
+		tmp = num;
+		reverse(tmp.begin(), tmp.end());
+		int carry = 0;
+		for(int i = 0; i < num.length(); i++) {
+			int t = (num[i] + tmp[i] + carry - 2 * '0');
+			num[i] = t % 10 + '0';
+			carry = t / 10;
+		} 
+		if(carry) num.push_back(carry + '0');
+	}
+	reverse(num.begin(), num.end());
+	cout << num << endl;
+	cout << (i == k ? k : i);
+	return 0;
+}

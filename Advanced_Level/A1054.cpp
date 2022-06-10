@@ -24,3 +24,26 @@ int main(int argc, char const *argv[]) {
 	cout << max->first; 
 	return 0;
 }
+
+/* simplification */
+#include <iostream>
+#include <map>
+using namespace std;
+map<int, int> ht;
+
+int main() {
+	int m, n, tmp;
+	cin >> m >> n;
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			cin >> tmp;
+			ht[tmp]++;
+		}
+	}
+	int ans, condition = (m * n) / 2;
+	for(auto &p: ht) {
+		if(p.second > condition) ans = p.first;
+	}
+	cout << ans;
+	return 0;
+}
